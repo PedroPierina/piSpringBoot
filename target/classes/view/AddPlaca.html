@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add placa</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h1>Add P</h1>
+
+<form action="#" th:action="@{/addPlaca}" th:object="${placa}" method="post">
+    <p>
+        Placa: <input type="text" th:field="*{placa}">
+    </p>
+    <p>
+        codInfra: <input type="text" th:field="*{codInfra}">
+    </p>
+    <p>
+        desc: <input type="text" th:field="*{desc}">
+    </p>
+    <p>
+        <input type="submit" value="Submit"/> <input type="reset" value="Reset">
+    </p>
+</form>
+
+</body>
+</html>
