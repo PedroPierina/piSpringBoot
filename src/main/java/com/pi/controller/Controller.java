@@ -1,8 +1,10 @@
 package com.pi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,12 +37,17 @@ public class Controller {
 	@GetMapping
 	@RequestMapping("/database/placas/add")
 	public String sendForm(Placa placa){
-		return "AddPlaca";
+		return "placa";
 	}
 	
 	 @PostMapping("/database/placas/add")
 	    public String processForm(Placa Placa) {
 
 	        return "showMessage";
+	    }
+	 
+	 @RequestMapping("/greeting")
+	    public String greetingForm() {
+	        return "index2";
 	    }
 }
