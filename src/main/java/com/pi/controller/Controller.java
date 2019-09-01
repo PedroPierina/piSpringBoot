@@ -34,20 +34,8 @@ public class Controller {
 	}
 	
 	
-	@GetMapping
-	@RequestMapping("/database/placas/add")
-	public String sendForm(Placa placa){
-		return "placa";
-	}
-	
-	 @PostMapping("/database/placas/add")
-	    public String processForm(Placa Placa) {
-
-	        return "showMessage";
-	    }
-	 
-	 @RequestMapping("/greeting")
-	    public String greetingForm() {
-	        return "index2";
-	    }
+	@RequestMapping("/insereCSV")
+    public String insereCSV() {
+        return "index2";
+    }
 }
