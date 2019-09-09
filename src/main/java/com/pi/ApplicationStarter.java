@@ -3,14 +3,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {"com.pi.controller"})
 public class ApplicationStarter extends SpringBootServletInitializer{
 	public static void main(String[] args) {
 		SpringApplication.run(ApplicationStarter.class, args);
