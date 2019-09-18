@@ -31,8 +31,7 @@ public class PlacasController {
 	@GetMapping	
 	public @ResponseBody Iterable<Placa> buscarTodas(){
 		Iterable<Placa>  listaPlacas = repo.findAll();
-		return listaPlacas;
-		
+		return listaPlacas;	
 	}
 	
 	@PostMapping
@@ -41,10 +40,11 @@ public class PlacasController {
 	}
 	
 	@PostMapping(value = "/import/csv", consumes = "multipart/form-data")
-	public void importCSV(@RequestParam("import_file") MultipartFile file) throws IOException {
+	public String importCSV(@RequestParam("import_file") MultipartFile file) throws IOException {
 	   CsvMapper mapper = new CsvMapper();
 	   CsvSchema schema = mapper.schemaFor(Placa.class).withHeader().withColumnReordering(true);
 	   ObjectReader reader = mapper.readerFor(Placa.class).with(schema);
 	   repo.saveAll(reader.<Placa>readValues(file.getInputStream()).readAll());
+	   return "redirect:/view/placas";
 	}
 }

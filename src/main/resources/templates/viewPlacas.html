@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add placa</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+	<h1>Placas<h1>
+	<table>
+    <tr>
+        <th>Placa</th>
+        <th>Codigo da Infração</th>
+        <th>Descrição</th>
+    </tr>
+    <tr th:each="placa : ${placas}">
+        <td th:text="${placa.placa}"></td>
+        <td th:text="${placa.codInfra}"></td>
+        <td th:text="${placa.desc}"></td>
+    </tr>
+    </table>
+</body>
+</html>
