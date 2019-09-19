@@ -21,6 +21,9 @@ public class Placa {
 	@NotEmpty(message = "Descri��o da Infra��o � um campo obrigatorio")
 	private String desc;
 	
+	public int getId() {
+		return id;
+	}
 	public String getPlaca() {
 		return placa;
 	}
