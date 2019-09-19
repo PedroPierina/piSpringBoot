@@ -3,6 +3,8 @@ package com.pi.controller;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 //import org.springframework.http.ResponseEntity;
@@ -40,11 +42,11 @@ public class PlacasController {
 	}
 	
 	@PostMapping(value = "/import/csv", consumes = "multipart/form-data")
-	public String importCSV(@RequestParam("import_file") MultipartFile file) throws IOException {
+	public void importCSV(@RequestParam("import_file") MultipartFile file, HttpServletResponse httpResponse) throws IOException {
 	   CsvMapper mapper = new CsvMapper();
 	   CsvSchema schema = mapper.schemaFor(Placa.class).withHeader().withColumnReordering(true);
 	   ObjectReader reader = mapper.readerFor(Placa.class).with(schema);
 	   repo.saveAll(reader.<Placa>readValues(file.getInputStream()).readAll());
-	   return "redirect:/view/placas";
+	   httpResponse.sendRedirect("/view/placas");
 	}
 }
