@@ -5,12 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.pi.repository.Repositorio;
+import com.pi.repository.RepositorioDetectada;
 
 @Controller
 public class ViewController {
 	
 	@Autowired
 	private Repositorio repo;
+	@Autowired
+	private RepositorioDetectada repoDetec;
 	
 	@RequestMapping("/import/placas")
 	public String addicionar() {
@@ -23,5 +26,12 @@ public class ViewController {
 		modelAndView.addObject("placas", repo.findAll());
 		return modelAndView;
 	}
-
+	
+	@RequestMapping("/view/placasDetectadas")
+	public ModelAndView viewPlacasDetectadas() {
+		ModelAndView modelAndView = new ModelAndView("viewPlacas");
+		modelAndView.addObject("placas", repoDetec.findAll());
+		return modelAndView;
+	}
+	
 }

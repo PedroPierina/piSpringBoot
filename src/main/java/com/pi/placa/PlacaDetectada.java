@@ -9,8 +9,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PositiveOrZero;
 
 @Entity
-@Table(name = "placa")
-public class Placa {
+@Table(name = "placaDetectada")
+public class PlacaDetectada {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;

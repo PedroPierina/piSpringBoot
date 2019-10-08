@@ -22,13 +22,17 @@ import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.pi.placa.Placa;
+import com.pi.placa.PlacaDetectada;
 import com.pi.repository.Repositorio;
+import com.pi.repository.RepositorioDetectada;
 
 @RestController
 @RequestMapping("/database/placas")
 public class PlacasController {
 	@Autowired
 	private Repositorio repo;
+	@Autowired
+	private RepositorioDetectada repoDetec;
 	
 	@GetMapping	
 	public @ResponseBody Iterable<Placa> buscarTodas(){
@@ -49,4 +53,10 @@ public class PlacasController {
 	   repo.saveAll(reader.<Placa>readValues(file.getInputStream()).readAll());
 	   httpResponse.sendRedirect("/view/placas");
 	}
+	
+	@PostMapping(value = "/detectada")
+	public void detectada(@RequestBody PlacaDetectada placa) {
+		repoDetec.save(placa);
+	}
+	
 }
