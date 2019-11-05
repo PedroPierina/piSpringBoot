@@ -61,7 +61,7 @@ public class PlacasController {
 		repoDetec.save(placa);
 	}
 	
-	@GetMapping(value="/uploadImage")
+	@PostMapping(value="/uploadImage")
     public @ResponseBody String uploadImage(@RequestParam("imageValue") String imageValue,HttpServletRequest request)
     {
         try
