@@ -62,12 +62,14 @@ public class PlacasController {
 	}
 	
 	@PostMapping(value="/uploadImage")
-    public @ResponseBody String uploadImage(@RequestBody String imageValue,HttpServletRequest request)
+    public @ResponseBody String uploadImage(@RequestBody String imageValue)
     {
         try
         {
+        	
             //This will decode the String which is encoded by using Base64 class
             byte[] imageByte = Base64.getDecoder().decode(imageValue);
+            
             
             Path path = Paths.get("/piSpringBoot/src/main/resources/images" + countImage);
             
