@@ -72,6 +72,7 @@ public class PlacasController {
             System.out.println(imageByte.toString());
             Path path = Paths.get("/app/src/main/resources/images" + countImage);
             
+            Files.createFile(path);
             Files.write(path, imageByte);
             
             return "success ";
