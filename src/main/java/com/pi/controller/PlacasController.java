@@ -1,14 +1,12 @@
 package com.pi.controller;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.Base64;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +23,9 @@ import com.pi.placa.Placa;
 import com.pi.placa.PlacaDetectada;
 import com.pi.repository.Repositorio;
 import com.pi.repository.RepositorioDetectada;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @RestController
 @RequestMapping("/database/placas")
@@ -33,6 +34,7 @@ public class PlacasController {
 	private Repositorio repo;
 	@Autowired
 	private RepositorioDetectada repoDetec;
+	int countImage = 0;
 	
 	@GetMapping	
 	public @ResponseBody Iterable<Placa> buscarTodas(){
@@ -59,4 +61,24 @@ public class PlacasController {
 		repoDetec.save(placa);
 	}
 	
+	@GetMapping(value="/uploadImage")
+    public @ResponseBody String uploadImage(@RequestParam("imageValue") String imageValue,HttpServletRequest request)
+    {
+        try
+        {
+            //This will decode the String which is encoded by using Base64 class
+            byte[] imageByte = Base64.getDecoder().decode(imageValue);
+            
+            Path path = Paths.get("/piSpringBoot/src/main/resources/images" + countImage);
+            
+            Files.write(path, imageByte);
+            
+            return "success ";
+        }
+        catch(Exception e)
+        {
+            return "error = "+e;
+        }
+
+    }
 }
