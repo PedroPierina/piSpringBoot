@@ -62,7 +62,7 @@ public class PlacasController {
 	}
 	
 	@PostMapping(value="/uploadImage")
-    public @ResponseBody String uploadImage(@RequestParam("imageValue") String imageValue,HttpServletRequest request)
+    public @ResponseBody String uploadImage(@RequestBody String imageValue,HttpServletRequest request)
     {
         try
         {
