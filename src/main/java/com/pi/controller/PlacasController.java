@@ -66,11 +66,12 @@ public class PlacasController {
     {
         try
         {
-        	
+        	countImage++;
             //This will decode the String which is encoded by using Base64 class
             byte[] imageByte = Base64.getDecoder().decode(imageValue);
             System.out.println(imageByte.toString());
-            Path path = Paths.get("/app/src/main/resources/images" + countImage);
+            Path path = Paths.get("\\app\\src\\main\\resources\\images\\" + countImage);
+//            Path path = Paths.get("D:\\Workspace\\piSpringBoot\\src\\main\\resources\\images\\" + countImage+ ".png");
             
             Files.createFile(path);
             Files.write(path, imageByte);
