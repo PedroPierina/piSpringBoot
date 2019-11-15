@@ -19,13 +19,16 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import com.pi.image.Image;
 import com.pi.placa.Placa;
 import com.pi.placa.PlacaDetectada;
+import com.pi.repository.FileRepository;
 import com.pi.repository.Repositorio;
 import com.pi.repository.RepositorioDetectada;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Blob;
 
 @RestController
 @RequestMapping("/database/placas")
@@ -34,6 +37,8 @@ public class PlacasController {
 	private Repositorio repo;
 	@Autowired
 	private RepositorioDetectada repoDetec;
+	@Autowired
+	private FileRepository fileRepository;
 	int countImage = 0;
 	
 	@GetMapping	
@@ -73,8 +78,15 @@ public class PlacasController {
             Path path = Paths.get("\\app\\src\\main\\resources\\images\\" + countImage);
 //            Path path = Paths.get("D:\\Workspace\\piSpringBoot\\src\\main\\resources\\images\\" + countImage+ ".png");
             
-            Files.createFile(path);
-            Files.write(path, imageByte);
+            
+            Image imagem = new Image();
+            Blob blob = new javax.sql.rowset.serial.SerialBlob(imageByte);
+            
+            imagem.setData(blob);
+            imagem.setFileName("Imagem_" + countImage);
+            imagem.setFileType("png");
+            
+            fileRepository.save(imagem);
             
             return "success ";
         }
