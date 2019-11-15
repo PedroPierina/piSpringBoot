@@ -1,6 +1,5 @@
 package com.pi.image;
 
-import java.sql.Blob;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,37 +8,32 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
-@Table(name = "placa")
+@Table(name = "image")
 public class Image {
 	@Id
-//	@GeneratedValue(generator = "uuid")
-//	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
+	private int id;
 
 	private String fileName;
 
 	private String fileType;
 
-	@Lob()
-//	private byte[] data;
-	private Blob data;
+	@Lob
+	private byte[] data;
 
 	public Image() {
 
 	    }
 
-	public Image(String fileName, String fileType, Blob data) {
+	public Image(String fileName, String fileType, byte[] data) {
 	        this.fileName = fileName;
 	        this.fileType = fileType;
 	        this.data = data;
 	    }
 	
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 	public String getFileName() {
@@ -58,11 +52,11 @@ public class Image {
 		this.fileType = fileType;
 	}
 
-	public Blob getData() {
+	public byte[] getData() {
 		return data;
 	}
 
-	public void setData(Blob data) {
+	public void setData(byte[] data) {
 		this.data = data;
 	}
 	

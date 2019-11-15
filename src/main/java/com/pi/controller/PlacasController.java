@@ -1,6 +1,7 @@
 package com.pi.controller;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Base64;
 
 import javax.servlet.http.HttpServletRequest;
@@ -80,9 +81,9 @@ public class PlacasController {
             
             
             Image imagem = new Image();
-            Blob blob = new javax.sql.rowset.serial.SerialBlob(imageByte);
+//            String blob = Arrays.toString(imageByte);
             
-            imagem.setData(blob);
+            imagem.setData(imageByte);
             imagem.setFileName("Imagem_" + countImage);
             imagem.setFileType("png");
             
