@@ -1,9 +1,20 @@
 package com.pi.controller;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.pi.image.Image;
+import com.pi.repository.FileRepository;
 import com.pi.repository.Repositorio;
 import com.pi.repository.RepositorioDetectada;
 
@@ -14,6 +25,8 @@ public class ViewController {
 	private Repositorio repo;
 	@Autowired
 	private RepositorioDetectada repoDetec;
+	@Autowired
+	private FileRepository fileRepository;
 	
 	@RequestMapping("/import/placas")
 	public String addicionar() {
@@ -34,4 +47,21 @@ public class ViewController {
 		return modelAndView;
 	}
 	
+	@RequestMapping("/image/{image_id}")
+	public ModelAndView getImage(@PathVariable("image_id") String image_id) {
+		ModelAndView modelAndView = new ModelAndView("viewImage");
+		modelAndView.addObject("image", image_id);
+		return modelAndView;
+	}
+	
+	@RequestMapping("/view/image/{image_id}")
+	public void viewImagePage(@PathVariable("image_id") String image_id, HttpServletResponse response) throws IOException {
+		response.setContentType("image/jpeg");
+		ServletOutputStream outputStream = response.getOutputStream();
+		List<Image> images = fileRepository.findAll();
+		Image image = images.get(0);
+		outputStream.write(image.getData());
+		outputStream.close();
+		
+	}
 }
