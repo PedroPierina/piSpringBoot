@@ -56,10 +56,15 @@ public class ViewController {
 	
 	@RequestMapping("/view/image/{image_id}")
 	public void viewImagePage(@PathVariable("image_id") String image_id, HttpServletResponse response) throws IOException {
+		System.out.println("Sodexo");
 		response.setContentType("image/jpeg");
 		ServletOutputStream outputStream = response.getOutputStream();
-		List<Image> images = fileRepository.findAll();
-		Image image = images.get(0);
+//		List<Image> images = fileRepository.findAll();
+//		Image image = images.get(0);
+		System.out.println(image_id + "guilhere");
+		Optional<Image> img = fileRepository.findById(Integer.parseInt(image_id));
+		Image image = img.get();
+		
 		outputStream.write(image.getData());
 		outputStream.close();
 		
