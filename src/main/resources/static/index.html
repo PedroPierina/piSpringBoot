@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Placas Detectadas</title>
+</head>
+
+<script type="text/javascript">
+
+    var stompClient = null;
+
+    function setConnected(connected) {
+        document.getElementById('connect').disabled = connected;
+        document.getElementById('disconnect').disabled = !connected;
+        document.getElementById('conversationDiv').style.visibility
+            = connected ? 'visible' : 'hidden';
+        document.getElementById('response').innerHTML = '';
+    }
+
+    function connect() {
+        var socket = new SockJS('/spring-mvc-java/image');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            setConnected(true);
+            console.log('Connected: ' + frame);
+            stompClient.subscribe('/topic/image', function (messageOutput) {
+                showMessageOutput(messageOutput.body);
+            });
+        });
+    }
+
+    function disconnect() {
+        if (stompClient != null) {
+            stompClient.disconnect();
+        }
+        setConnected(false);
+        console.log("Disconnected");
+    }
+
+    function showMessageOutput(messageOutput) {
+        var response = document.getElementById('response');
+        var img = document.createElement("img");
+
+        img.src = messageOutput;
+        response.appendChild(img);
+    }
+
+    
+</script>
+
+<body onload="connect()">
+    <div id="response"></div>
+
+</body>
+
+</html>
