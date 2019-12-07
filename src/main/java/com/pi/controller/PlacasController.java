@@ -26,6 +26,8 @@ import com.pi.placa.PlacaDetectada;
 import com.pi.repository.FileRepository;
 import com.pi.repository.Repositorio;
 import com.pi.repository.RepositorioDetectada;
+import com.pi.webSocket.CommService;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -75,20 +77,15 @@ public class PlacasController {
         	countImage++;
             //This will decode the String which is encoded by using Base64 class
             byte[] imageByte = Base64.getDecoder().decode(imageValue);
-            System.out.println(imageByte.toString());
-            Path path = Paths.get("\\app\\src\\main\\resources\\images\\" + countImage);
-//            Path path = Paths.get("D:\\Workspace\\piSpringBoot\\src\\main\\resources\\images\\" + countImage+ ".png");
-            
             
             Image imagem = new Image();
-//            String blob = Arrays.toString(imageByte);
             
             imagem.setData(imageByte);
             imagem.setFileName("Imagem_" + countImage);
             imagem.setFileType("png");
             
             fileRepository.save(imagem);
-            
+            CommService.send("data:image/png;base64," + imageValue);
             return "success ";
         }
         catch(Exception e)

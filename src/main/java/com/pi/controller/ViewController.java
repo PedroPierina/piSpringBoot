@@ -69,4 +69,10 @@ public class ViewController {
 		outputStream.close();
 		
 	}
+	
+	@RequestMapping("/view/teste")
+	public ModelAndView viewTeste() {
+		ModelAndView modelAndView = new ModelAndView("teste");
+		return modelAndView;
+	}
 }

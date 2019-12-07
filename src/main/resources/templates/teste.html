@@ -8,16 +8,24 @@
 
 <body>
     <div id="response"></div>
+	<button id="1">Click</button>
+	<button id="2">teste</button>
 </body>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script type="text/javascript">
+	var aux = document.getElementById("1")
+	var teste = document.getElementById("2")
+	console.log(aux)
+	aux.addEventListener("click", connect)
+	teste.addEventListener("click", sendMessage)
     var stompClient = null;
 
     function connect() {
-        var socket = new SockJS('/image');
+    console.log("Oi");
+        var socket = new SockJS('http://localhost:8080/image');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function (frame) {
             
@@ -43,8 +51,12 @@
         img.src = messageOutput;
         response.appendChild(img);
     }
-	
-    window.onload = connect();
+
+    function sendMessage(event) {
+	    var chatMessage = "Oi";
+	    stompClient.send("/app/image", {}, chatMessage);
+	 
+	}
 </script>
 
 
