@@ -89,6 +89,10 @@ public class PlacasController {
 //            fileRepository.save(imagem);
         
         	System.out.println(placa);
+        	System.out.println();
+        	System.out.println();
+        	System.out.println(placa.getData());
+        	System.out.println();
         	placa.setData("data:image/png;base64," + placa.getData());
             CommService.send(placa.toString());
             
