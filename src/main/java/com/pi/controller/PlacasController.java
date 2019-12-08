@@ -90,12 +90,16 @@ public class PlacasController {
         
         	System.out.println(placa);
         	System.out.println();
-        	System.out.println(placa.getData());
+        	System.out.println(placa.getBase64Image());
         	System.out.println();
-        	if (placa.getData() == null ) {
+        	if (placa.getBase64Image() == null ) {
 				System.out.println("Sou NUll");
 			}
-        	placa.setData("data:image/png;base64," + placa.getData());
+        	
+        	String auxS = "data:image/png;base64," + placa.getBase64Image();
+        	byte[] aux = auxS.getBytes();
+        	
+        	placa.setBase64Image(aux);
             CommService.send(placa.toString());
             
 //            placa.setData(Base64.getDecoder().decode(placa.getData()));
