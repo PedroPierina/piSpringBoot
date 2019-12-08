@@ -23,13 +23,13 @@ public class PlacaDetectada {
 	private int codInfra;
 	@NotEmpty(message = "Descri��o da Infra��o � um campo obrigatorio")
 	private String desc;
-	@Lob
-	private String data;
 	
 	private String longitude;
 	
 	private String latitude;
 	
+	@Lob
+	private String data;
 	
 	public String getLongitude() {
 		return longitude;
