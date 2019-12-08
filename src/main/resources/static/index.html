@@ -39,9 +39,13 @@
     function showMessageOutput(messageOutput) {
         var message = JSON.parse(messageOutput);
         var response = document.getElementById('response');
+        
+        
+       let str = new TextDecoder().decode(message.Base64Image);
+        
         response.innerHTML += 
         `<div>
-            <img src='${message.image}'></img></br>
+            <img src='${str}'></img></br>
             <p>Placa: ${message.placa}</p></br>
             <p>Codigo: ${message.codInfra}</p></br>
             <p>data: ${message.data}</p></br>

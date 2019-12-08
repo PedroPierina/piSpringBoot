@@ -92,6 +92,7 @@ public class PlacasController {
         	System.out.println();
         	System.out.println(placa.getBase64Image());
         	System.out.println();
+        	
         	if (placa.getBase64Image() == null ) {
 				System.out.println("Sou NUll");
 			}
