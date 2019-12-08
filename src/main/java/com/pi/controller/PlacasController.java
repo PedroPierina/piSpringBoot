@@ -90,9 +90,11 @@ public class PlacasController {
         
         	System.out.println(placa);
         	System.out.println();
-        	System.out.println();
         	System.out.println(placa.getData());
         	System.out.println();
+        	if (placa.getData() == null ) {
+				System.out.println("Sou NUll");
+			}
         	placa.setData("data:image/png;base64," + placa.getData());
             CommService.send(placa.toString());
             
