@@ -7,6 +7,7 @@ import java.util.Base64;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,28 +65,35 @@ public class PlacasController {
 	   httpResponse.sendRedirect("/view/placas");
 	}
 	
-	@PostMapping(value = "/detectada")
+	@PostMapping(value = "/uploadImage")
 	public void detectada(@RequestBody PlacaDetectada placa) {
 		repoDetec.save(placa);
 	}
 	
-	@PostMapping(value="/uploadImage")
-    public @ResponseBody String uploadImage(@RequestBody String imageValue)
+	
+	@PostMapping(value="/detectada")
+    public @ResponseBody String uploadImage(@RequestBody PlacaDetectada placa)
     {
         try
         {
-        	countImage++;
+//        	countImage++;
             //This will decode the String which is encoded by using Base64 class
-            byte[] imageByte = Base64.getDecoder().decode(imageValue);
+//            byte[] imageByte = Base64.getDecoder().decode(placa.getData());
             
-            Image imagem = new Image();
+//            Image imagem = new Image();
             
-            imagem.setData(imageByte);
-            imagem.setFileName("Imagem_" + countImage);
-            imagem.setFileType("png");
+//            imagem.setData(imageByte);
+//            imagem.setFileName("Imagem_" + countImage);
+//            imagem.setFileType("png");
+//            
+//            fileRepository.save(imagem);
+        
+        	System.out.println(placa);
+        	placa.setData("data:image/png;base64," + placa.getData());
+            CommService.send(placa.toString());
             
-            fileRepository.save(imagem);
-            CommService.send("data:image/png;base64," + imageValue);
+//            placa.setData(Base64.getDecoder().decode(placa.getData()));
+            repoDetec.save(placa);
             return "success ";
         }
         catch(Exception e)

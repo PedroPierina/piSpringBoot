@@ -37,11 +37,18 @@
     }
 
     function showMessageOutput(messageOutput) {
+        var message = JSON.parse(messageOutput);
         var response = document.getElementById('response');
-        var img = document.createElement("img");
-		console.log("messageOutput")
-        img.src = messageOutput;
-        response.appendChild(img);
+        response.innerHTML += 
+        `<div>
+            <img src='${message.image}'></img></br>
+            <p>Placa: ${message.placa}</p></br>
+            <p>Codigo: ${message.codInfra}</p></br>
+            <p>data: ${message.data}</p></br>
+            <p>Latitude: ${message.longitude}</p></br>
+            <p>Longitude: ${message.latitude}</p></br>
+            <p>Descrição: ${message.desc}</p></br></br>
+        </div>`
     }
 	
     window.onload = connect();

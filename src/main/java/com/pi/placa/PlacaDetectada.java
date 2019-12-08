@@ -1,9 +1,12 @@
 package com.pi.placa;
 
+import java.util.Arrays;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PositiveOrZero;
@@ -20,8 +23,37 @@ public class PlacaDetectada {
 	private int codInfra;
 	@NotEmpty(message = "Descri��o da Infra��o � um campo obrigatorio")
 	private String desc;
+	@Lob
+	private String data;
+	
+	private String longitude;
+	
+	private String latitude;
 	
 	
+	public String getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+	public String getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+	
+	
+	public String getData() {
+		return data;
+	}
+	public void setData(String string) {
+		this.data = string;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public int getId() {
 		return id;
 	}
@@ -43,9 +75,11 @@ public class PlacaDetectada {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
+	
 	@Override
 	public String toString() {
-		return "Placa [id=" + id + ", placa=" + placa + ", codInfra=" + codInfra + ", desc=" + desc + "]";
+		return "PlacaDetectada [id=" + id + ", placa=" + placa + ", codInfra=" + codInfra + ", desc=" + desc + ", data="
+				+ data + ", longitude=" + longitude + ", latitude=" + latitude + "]";
 	}
 	
 	
