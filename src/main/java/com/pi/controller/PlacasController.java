@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -101,7 +102,11 @@ public class PlacasController {
         	byte[] aux = auxS.getBytes();
         	
         	placa.setBase64Image(aux);
-            CommService.send(placa.toString());
+        	
+			
+			JSONObject jo = new JSONObject(placa);
+        	
+            CommService.send(jo);
             
 //            placa.setData(Base64.getDecoder().decode(placa.getData()));
             repoDetec.save(placa);

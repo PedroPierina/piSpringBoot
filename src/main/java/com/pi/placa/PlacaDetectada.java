@@ -78,9 +78,13 @@ public class PlacaDetectada {
 	
 	@Override
 	public String toString() {
-		return "PlacaDetectada [id=" + id + ", placa=" + placa + ", codInfra=" + codInfra + ", desc=" + desc
-				+ ", longitude=" + longitude + ", latitude=" + latitude + ", base64Image="
-				+ Arrays.toString(base64Image) + "]";
+		return "id=" + id + 
+				", placa=" + placa + 
+				", codInfra=" + codInfra + 
+				", desc=" + desc + 
+				", longitude=" + longitude + 
+				", latitude=" + latitude + 
+				", base64Image=" + Arrays.toString(base64Image) + "]";
 	}
 	
 }
