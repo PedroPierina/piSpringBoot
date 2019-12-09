@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pi.image.Image;
+import com.pi.placa.PlacaDetectada;
 import com.pi.repository.FileRepository;
 import com.pi.repository.Repositorio;
 import com.pi.repository.RepositorioDetectada;
@@ -62,10 +63,10 @@ public class ViewController {
 //		List<Image> images = fileRepository.findAll();
 //		Image image = images.get(0);
 		System.out.println(image_id + "guilhere");
-		Optional<Image> img = fileRepository.findById(Integer.parseInt(image_id));
-		Image image = img.get();
+		Optional<PlacaDetectada> img = repoDetec.findById(Integer.parseInt(image_id));
+		PlacaDetectada image = img.get();
 		
-		outputStream.write(image.getData());
+//		outputStream.write(image.getBase64Image());
 		outputStream.close();
 		
 	}
