@@ -82,10 +82,10 @@ public class PlacasController {
         	System.out.println(placa.getBase64Image());
         	System.out.println();
         	
-        	String auxS = "data:image/png;base64," + placa.getBase64Image().toString();
-        	byte[] aux = auxS.getBytes();
+//        	String auxS = "data:image/png;base64," + placa.getBase64Image().toString();
+//        	byte[] aux = auxS.getBytes();
         	
-//        	placa.setBase64Image(aux);
+        	placa.setBase64Image("data:image/png;base64," + placa.getBase64Image());
         	
             CommService.send(placa);
             
