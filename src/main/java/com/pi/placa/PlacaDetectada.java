@@ -29,7 +29,7 @@ public class PlacaDetectada {
 	private String latitude;
 	
 	@Lob
-	private byte[] base64Image;
+	private String base64Image;
 	
 	public String getLongitude() {
 		return longitude;
@@ -45,10 +45,10 @@ public class PlacaDetectada {
 	}
 	
 	
-	public byte[] getBase64Image() {
+	public String getBase64Image() {
 		return base64Image;
 	}
-	public void setBase64Image(byte[] string) {
+	public void setBase64Image(String string) {
 		this.base64Image = string;
 	}
 	public void setId(int id) {
@@ -75,16 +75,12 @@ public class PlacaDetectada {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
-	
 	@Override
 	public String toString() {
-		return "id=" + id + 
-				", placa=" + placa + 
-				", codInfra=" + codInfra + 
-				", desc=" + desc + 
-				", longitude=" + longitude + 
-				", latitude=" + latitude + 
-				", base64Image=" + Arrays.toString(base64Image) + "]";
+		return "PlacaDetectada [id=" + id + ", placa=" + placa + ", codInfra=" + codInfra + ", desc=" + desc
+				+ ", longitude=" + longitude + ", latitude=" + latitude + ", base64Image=" + base64Image + "]";
 	}
+	
+	
 	
 }

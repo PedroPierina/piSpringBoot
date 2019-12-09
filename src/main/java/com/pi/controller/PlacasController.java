@@ -93,19 +93,14 @@ public class PlacasController {
         	System.out.println();
         	System.out.println(placa.getBase64Image());
         	System.out.println();
-        	System.out.println(placa.getBase64Image().toString());
         	
         	String auxS = "data:image/png;base64," + placa.getBase64Image().toString();
         	byte[] aux = auxS.getBytes();
         	
-        	placa.setBase64Image(aux);
-        	
-			
-//			JSONObject jo = new JSONObject(placa);
+//        	placa.setBase64Image(aux);
         	
             CommService.send(placa);
             
-//            placa.setData(Base64.getDecoder().decode(placa.getData()));
             repoDetec.save(placa);
             return "success ";
         }
