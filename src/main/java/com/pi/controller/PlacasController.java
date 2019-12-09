@@ -77,18 +77,6 @@ public class PlacasController {
     {
         try
         {
-//        	countImage++;
-            //This will decode the String which is encoded by using Base64 class
-//            byte[] imageByte = Base64.getDecoder().decode(placa.getData());
-            
-//            Image imagem = new Image();
-            
-//            imagem.setData(imageByte);
-//            imagem.setFileName("Imagem_" + countImage);
-//            imagem.setFileType("png");
-//            
-//            fileRepository.save(imagem);
-        
         	System.out.println(placa);
         	System.out.println();
         	System.out.println(placa.getBase64Image());
