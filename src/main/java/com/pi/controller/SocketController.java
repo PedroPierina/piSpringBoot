@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pi.image.Image;
+import com.pi.placa.PlacaDetectada;
 import com.pi.repository.FileRepository;
 
 @Controller
@@ -24,9 +25,9 @@ public class SocketController {
 	@RequestMapping(value="/image2", method=RequestMethod.POST)
 	@MessageMapping("/image")
     @SendTo("/topic/image")
-    public String sendMessage(@RequestBody String imageValue) {
+    public PlacaDetectada sendMessage(@RequestBody PlacaDetectada placa) {
 		System.out.println("Entrei socketController");
-            return "data:image/png;base64," + imageValue;
+            return placa;
 		
        
     }

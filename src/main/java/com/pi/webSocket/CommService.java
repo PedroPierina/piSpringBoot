@@ -3,6 +3,8 @@ package com.pi.webSocket;
 import org.json.JSONObject;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
+import com.pi.placa.PlacaDetectada;
+
 public class CommService {
 
 	  private static SimpMessagingTemplate template;
@@ -11,7 +13,7 @@ public class CommService {
 	    template = tmplt;
 	  }
 
-	  public static void send(JSONObject jo) {
-	    template.convertAndSend("/topic/image", jo);
+	  public static void send(PlacaDetectada placa) {
+	    template.convertAndSend("/topic/image", placa);
 	  }
 	}

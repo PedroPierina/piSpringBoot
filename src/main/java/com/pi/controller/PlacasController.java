@@ -104,9 +104,9 @@ public class PlacasController {
         	placa.setBase64Image(aux);
         	
 			
-			JSONObject jo = new JSONObject(placa);
+//			JSONObject jo = new JSONObject(placa);
         	
-            CommService.send(jo);
+            CommService.send(placa);
             
 //            placa.setData(Base64.getDecoder().decode(placa.getData()));
             repoDetec.save(placa);
