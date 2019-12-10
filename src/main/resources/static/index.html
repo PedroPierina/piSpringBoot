@@ -259,21 +259,8 @@
 
     function showMessageOutput(messageOutput) {
         var message = JSON.parse(messageOutput);
-        var response = document.getElementById('response');
         
-        templateCard(messageOutput);
-       
-        
-        // response.innerHTML += 
-        // `<div>
-        //     <img src='${message.base64Image}'></img></br>
-        //     <p>Placa: ${message.placa}</p></br>
-        //     <p>Codigo: ${message.codInfra}</p></br>
-        //     <p>Data: ${new Date().toLocaleString()}</p></br>
-        //     <p>Latitude: ${message.longitude}</p></br>
-        //     <p>Longitude: ${message.latitude}</p></br>
-        //     <p>Descrição: ${message.desc}</p></br></br>
-        // </div>`
+        templateCard(message);
     }
 </script>
 
@@ -318,7 +305,7 @@
                     <br>
                     <div class="card" style="width:400px">
 						<img class="card-img-top" src="${vehicle.base64Image}" alt="Card image">
-						<div class="card-body text-white">
+						<div class="card-body text-white bg-danger">
                             <h4 class="card-title">${vehicle.placa}</h4>
                             <p class="card-text">Codigo: ${vehicle.codInfra}</p>
                             <p>Data: ${new Date().toLocaleString()}</p>
